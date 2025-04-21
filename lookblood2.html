@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest Blood Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .table th { background-color: red; color: white; }
+        .search-box { max-width: 300px; }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-danger">Nearest Blood Bank (BB) / Blood Storage Unit (BSU)</h2>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <select id="state" class="form-control">
+                    <option>Gujarat</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="district" class="form-control" onchange="updateTalukas()">
+                    <option>Select District</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="taluka" class="form-control" onchange="updateCities()">
+                    <option>Select Taluka</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="city" class="form-control">
+                    <option>Select City</option>
+                </select>
+            </div>
+            <div class="col-md-3 mt-2">
+                <button class="btn btn-danger" onclick="filterResults()">Search</button>
+            </div>
+        </div>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Category</th>
+                    <th>Distance (km)</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody id="bloodBankTable">
+                <tr>
+                    <td colspan="8" class="text-center">No data available in table</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const districtData = {
+            "Ahmedabad": {"talukas": ["Dholka", "Sanand", "Viramgam"], "city": "Ahmedabad"},
+            "Amreli": {"talukas": ["Lathi", "Rajula", "Savarkundla"], "city": "Amreli"},
+            "Anand": {"talukas": ["Borsad", "Khambhat", "Petlad"], "city": "Anand"},
+            "Aravalli": {"talukas": ["Bayad", "Modasa", "Dhansura"], "city": "Modasa"},
+            "Banaskantha": {"talukas": ["Deesa", "Palanpur", "Tharad"], "city": "Palanpur"},
+            "Bharuch": {"talukas": ["Ankleshwar", "Jambusar", "Valia"], "city": "Bharuch"},
+            "Bhavnagar": {"talukas": ["Botad", "Mahuva", "Sihor"], "city": "Bhavnagar"},
+            "Botad": {"talukas": ["Botad", "Gadhada"], "city": "Botad"},
+            "Chhota Udaipur": {"talukas": ["Bodeli", "Jetpur-Pavi"], "city": "Chhota Udaipur"},
+            "Dahod": {"talukas": ["Dahod", "Limkheda"], "city": "Dahod"},
+            "Dang": {"talukas": ["Ahwa"], "city": "Ahwa"},
+            "Devbhoomi Dwarka": {"talukas": ["Dwarka", "Khambhalia"], "city": "Dwarka"},
+            "Gandhinagar": {"talukas": ["Kalol", "Mansa"], "city": "Gandhinagar"},
+            "Gir Somnath": {"talukas": ["Veraval", "Una"], "city": "Veraval"},
+            "Jamnagar": {"talukas": ["Dhrol", "Jodiya"], "city": "Jamnagar"},
+            "Junagadh": {"talukas": ["Mangrol", "Visavadar"], "city": "Junagadh"},
+            "Kheda": {"talukas": ["Kapadvanj", "Matar"], "city": "Nadiad"},
+            "Kutch": {"talukas": ["Bhuj", "Gandhidham"], "city": "Bhuj"},
+            "Mahisagar": {"talukas": ["Balasinor", "Lunawada"], "city": "Lunawada"},
+            "Mehsana": {"talukas": ["Vijapur", "Visnagar"], "city": "Mehsana"},
+            "Morbi": {"talukas": ["Morbi", "Wankaner"], "city": "Morbi"},
+            "Narmada": {"talukas": ["Rajpipla"], "city": "Rajpipla"},
+            "Navsari": {"talukas": ["Gandevi", "Chikhli"], "city": "Navsari"},
+        };
+
+        window.onload = function () {
+            let districtSelect = document.getElementById("district");
+            Object.keys(districtData).forEach(district => {
+                let option = document.createElement("option");
+                option.textContent = district;
+                option.value = district;
+                districtSelect.appendChild(option);
+            });
+        };
+
+        function updateTalukas() {
+            let district = document.getElementById("district").value;
+            let talukaSelect = document.getElementById("taluka");
+            let citySelect = document.getElementById("city");
+            talukaSelect.innerHTML = "<option>Select Taluka</option>";
+            citySelect.innerHTML = "<option>Select City</option>";
+            
+            if (districtData[district]) {
+                districtData[district].talukas.forEach(taluka => {
+                    let option = document.createElement("option");
+                    option.textContent = taluka;
+                    option.value = taluka;
+                    talukaSelect.appendChild(option);
+                });
+                citySelect.innerHTML = `<option>${districtData[district].city}</option>`;
+            }
+        }
+    </script>
+</body>
+</html>

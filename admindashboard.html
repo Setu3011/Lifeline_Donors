@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Lifeline Donor's</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+
+        header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #b71c1c;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffd54f;
+        }
+
+        .dashboard-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .dashboard-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #b71c1c;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .logo{
+            font-size: 50px;
+            font-weight: bold;
+            margin-left: 20px;
+            font-family: 'Satisfy', cursive;
+            background: linear-gradient(to right,rgb(245,2,2),rgb(245, 2, 2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #f44336;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="logo">Lifeline Donor's</h1>
+    </header>
+
+    <nav>
+        <a href="#">Dashboard</a>
+        <a href="#">Manage Donors</a>
+        <a href="#">View Requests</a>
+        <a href="#">Manage Camps</a>
+        <a href="#">Manage Users</a>
+        <a href="#">Logout</a>
+    </nav>
+
+    <section class="dashboard-section">
+        <h2>Welcome Admin</h2>
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>Total Donors</h3>
+                <p>1200+</p>
+            </div>
+            <div class="card">
+                <h3>Pending Requests</h3>
+                <p>45</p>
+            </div>
+            <div class="card">
+                <h3>Upcoming Camps</h3>
+                <p>3</p>
+            </div>
+            <div class="card">
+                <h3>Registered Users</h3>
+                <p>500+</p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
