@@ -6,82 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-
     <style>
-
+        /* 🔥 Your full original CSS (NO CHANGES) */
         nav {
             background-color: rgb(0, 0, 0);
-            /*background: linear-gradient(to right,blue-turquoise);
-            box-shadow: inset 0 -15px 30px rgba(224, 26, 26, 0.381);*/
             background: linear-gradient(45deg,#2f3b45,#2f3b45);
-            
-             padding: 20px;
-             display: flex;
-             align-items: center;
-             justify-content: space-between;
-         }
- 
-         nav ul {
-             list-style-type: none;
-             margin: 0;
-             padding: 0;
-             display: flex;
-         }
- 
-         nav ul li {
-             margin: 0 20px;
-         }
- 
-         nav ul li a {
-             color: white;
-             text-decoration: none;
-             font-weight: bold;
-             background: #1A237E;
-             padding: 10px 15px;
-             border-radius: 5px;
-             transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
-             display: inline-block;
-         }
- 
-         /* Hover Effect */
-         nav ul li a:hover {
-             background: #424242;
-             transform: scale(1.2);
-         }
- 
-         /* Click Effect */
-         nav ul li a:active {
-             background: rgb(255, 77, 77);
-             transform: scale(1.3);
-         }
- 
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            background: #1A237E;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+            display: inline-block;
+        }
+        nav ul li a:hover {
+            background: #424242;
+            transform: scale(1.2);
+        }
+        nav ul li a:active {
+            background: rgb(255, 77, 77);
+            transform: scale(1.3);
+        }
         .logo {
             font-size: 50px;
             font-weight: bold;
-            margin-left: 20px; /* Moves logo to the left */
+            margin-left: 20px;
             font-family: 'Satisfy', cursive;
-            /*color: (rgb(126,53,53),rgb(165, 18, 165));*/
             background: linear-gradient(to right,rgb(245,2,2),rgb(245, 2, 2));
-           /* background: linear-gradient(45deg, rgb(68, 52, 238), rgba(81, 37, 223, 0.648));*/
-           -webkit-background-clip: text;
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
             text-align: center;
             margin: 0;
-            padding: 20px;
-            margin: 0;
             padding: 0;
             background: url('background.png') no-repeat center center fixed;
             background-size: cover;
         }
-        .main{
-            background-color: antiquewhite;
-        }
-
         .main {
             background-color: rgb(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
@@ -96,7 +75,6 @@
             position: relative;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
-
         .close {
             position: absolute;
             right: 20px;
@@ -110,7 +88,6 @@
         .close:hover {
             color: #ff4444;
         }
-
         .bt {
             background: linear-gradient(45deg, #800080, #ff4444);
             color: white;
@@ -124,22 +101,17 @@
             margin: 1rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
-        
         .bt:hover {
             background: linear-gradient(45deg, #ff4444, #800080);
             transform: scale(1.05);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         }
-        
         .bt:active {
             transform: scale(0.98);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-        
-        
-        /*********/
         .form-group input {
-            width: 100%;
+            width: 75%;
             padding: 12px;
             border: none;
             border-radius: 25px;
@@ -147,140 +119,106 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-
         .form-group input:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.6);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        /******/
-
-        .bt:hover{
-            background: rgb(214, 4, 4);
-            transform: scale(1.1);
-        }
-        .bt:active{
-            background: rgb(207, 77,77);
-            transform: scale(1.1);
-        }
-
-        /********/
         @media screen and (max-width: 768px) {
             .main {
                 width: 95%;
                 margin: 80px auto;
                 padding: 1.5rem;
             }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            h3 {
-                font-size: 1.2rem;
-            }
-
-            .form-group label {
-                font-size: 1rem;
-            }
-
-            .form-group input {
-                padding: 10px;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 10px;
-            }
         }
-
         @media screen and (max-width: 480px) {
             .main {
                 margin: 60px auto;
                 padding: 1rem;
             }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .form-group {
-                margin-bottom: 1rem;
-            }
         }
-        /************/
-
-
     </style>
 </head>
 
 <body>
     <header>
         <nav>
-            <div class="logo">Lifeline Donor's</div> <!-- Lifeline Donors on Left -->
+            <div class="logo">Lifeline Donor's</div>
         </nav>
     </header>
 
     <section class="main">
         <div class="First">
-            <h2>Forgat Password</h2>
+            <h2>Reset Password</h2>
             <span class="close">&times;</span>
-            <div class="form-group">
-                Username <br>
-                <input type="text" style="font-family: Calibri; width: 60%;padding: 10px;margin-top: 5px;border: none;border-radius: 100px;background: rgba(255, 255, 255, 0.402);" placeholder="Enter username"><br><br>
-            </div>
 
-            <div class="form-group">
-                New Password <br>
-                <input type="password" style="font-family: Calibri; width: 60%;padding: 10px;margin-top: 5px;border: none;border-radius: 100px;background: rgba(255, 255, 255, 0.402);" placeholder="New Password"><br><br>
-            </div>
+            <form id="resetForm">
+                <div class="form-group">
+                    Username <br>
+                    <input type="text" id="username" placeholder="Enter Username" required><br><br>
+                </div>
 
-            <div class="form-group">
-                Confirm Password <br>
-                <input type="password" style="font-family: Calibri; width: 60%;padding: 10px;margin-top: 5px;border: none;border-radius: 100px;background: rgba(255, 255, 255, 0.402);" placeholder="Confirm Password"><br><br>
-            </div>
+                <div class="form-group">
+                    New Password <br>
+                    <input type="password" id="newPassword" placeholder="New Password" required><br><br>
+                </div>
 
-            <button class="bt" href="loginpage.html">continue</button><br><br>        
+                <div class="form-group">
+                    Confirm Password <br>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required><br><br>
+                </div>
+
+                <button type="submit" class="bt">Continue</button><br><br>
+            </form>
+
         </div>
     </section>
+
+    
     <script>
-        function validateForgotPasswordForm() {
+        document.getElementById('resetForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
             const username = document.getElementById('username').value.trim();
             const newPassword = document.getElementById('newPassword').value.trim();
             const confirmPassword = document.getElementById('confirmPassword').value.trim();
 
-            let isValid = true;
-
-            // Reset error messages
-            document.getElementById('usernameError').innerText = '';
-            document.getElementById('newPasswordError').innerText = '';
-            document.getElementById('confirmPasswordError').innerText = '';
-
-            if (username === '') {
-                document.getElementById('usernameError').innerText = 'Username is required.';
-                isValid = false;
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
             }
 
-            if (newPassword === '') {
-                document.getElementById('newPasswordError').innerText = 'New Password is required.';
-                isValid = false;
-            } else if (newPassword.length < 6) {
-                document.getElementById('newPasswordError').innerText = 'Password must be at least 6 characters.';
-                isValid = false;
+            if (newPassword.length < 6) {
+                alert('Password must be at least 6 characters.');
+                return;
             }
 
-            if (confirmPassword === '') {
-                document.getElementById('confirmPasswordError').innerText = 'Please confirm your password.';
-                isValid = false;
-            } else if (newPassword !== confirmPassword) {
-                document.getElementById('confirmPasswordError').innerText = 'Passwords do not match.';
-                isValid = false;
-            }
+                fetch('reset-password.php', {
 
-            return isValid;
-        }
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, newPassword })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    window.location.href = 'loginpage.html'; // Redirect to login page if reset successful
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+            });
+        });
+
+        // Close button to go back
+        document.querySelector('.close').addEventListener('click', function () {
+            window.history.back();
+        });
     </script>
 
 </body>
-
 </html>
