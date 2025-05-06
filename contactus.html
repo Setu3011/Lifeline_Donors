@@ -11,15 +11,13 @@
         .logo {
             font-size: 50px;
             font-weight: bold;
-            margin-left: 20px; /* Moves logo to the left */
+            margin-left: 20px;
             font-family: 'Satisfy', cursive;
-            /*color: (rgb(126,53,53),rgb(165, 18, 165));*/
-            background: linear-gradient(to right,rgb(245,2,2),rgb(245, 2, 2));
-           /* background: linear-gradient(45deg, rgb(68, 52, 238), rgba(81, 37, 223, 0.648));*/
-           -webkit-background-clip: text;
+            background: linear-gradient(to right, rgb(245, 2, 2), rgb(245, 2, 2));
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .close {
             position: absolute;
             right: 20px;
@@ -30,23 +28,20 @@
             transition: color 0.3s ease;
             z-index: 1;
         }
+
         .close:hover {
             color: #ff4444;
         }
 
         nav {
-            background-color: rgb(0, 0, 0);
-            /*background: linear-gradient(to right,blue-turquoise);
-            box-shadow: inset 0 -15px 30px rgba(224, 26, 26, 0.381);*/
-            background: linear-gradient(45deg,#2f3b45,#2f3b45);
-            
-             padding: 20px;
-             margin:  -20px;
-             display: flex;
-             align-items: center;
-             justify-content: space-between;
-         }
-        
+            background: linear-gradient(45deg, #2f3b45, #2f3b45);
+            padding: 20px;
+            margin: -20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
@@ -57,117 +52,105 @@
             background-size: cover;
         }
 
-        .body{
+        .body {
             justify-content: center;
             align-items: center;
             display: flex;
-            justify-content: center;
             height: 100vh;
         }
+
         .main {
-            background-color: rgb(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 15px;
-            text-align:center;
-            justify-content: center;
-            align-items: center;
+            text-align: center;
             width: 400px;
             height: 450px;
-            margin: 50px 500px;
+            margin: 50px auto;
             position: relative;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
-
-        .bt{
+        .bt {
             color: white;
-            text-decoration: none;
             font-weight: bold;
             background: purple;
             padding: 10px 15px;
-            border-radius: 1px;
-            transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
-            display: inline-block;
             border-radius: 100px;
-            border:10cm;
             width: 100px;
-            cursor:pointer;
-            font-weight:bold;
-            font-size:larger;
+            cursor: pointer;
+            font-size: larger;
+            border: none;
         }
+
+        .bt:hover {
+            background: rgb(214, 4, 4);
+            transform: scale(1.1);
+        }
+
+        .bt:active {
+            background: rgb(207, 77, 77);
+            transform: scale(1.1);
+        }
+
         textarea {
-            width: 100%;
-            height: 100px;
+            width: 60%;
+            height: 50px;
             padding: 10px;
             font-size: 16px;
             font-family: Calibri;
-            border-radius: 1px;
-            border: 1px solid #ccc;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 100px;
+            border: none;
+            background: rgba(255, 255, 255, 0.402);
             resize: none;
             outline: none;
         }
-        
+
         textarea:focus {
             border-color: #666;
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
         }
-        
-        .bt:hover{
-            background: rgb(214, 4, 4);
-            transform: scale(1.1);
-        }
-        .bt:active{
-            background: rgb(207, 77,77);
-            transform: scale(1.1);
-        }
 
+        input {
+            width: 60%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.402);
+        }
     </style>
 </head>
 
 <body>
     <header>
         <nav>
-            <div class="logo">Lifeline Donor's</div> <!-- Lifeline Donors on Left -->
+            <div class="logo">Lifeline Donor's</div>
         </nav>
     </header>
 
-
     <section class="main">
         <div class="First">
-            <span class="close">&times;</span>
-            <h1>Contact US ! </h1>
-            <form>
-            <!-- <label for="uname" style="font-size:larger">Username</label><br>
-            <input type="text" style=" width: 60%;padding: 10px;margin-top: 5px;border: none;border-radius: 100px;background: rgba(255, 255, 255, 0.402);" placeholder="Enter username"><br><br>
+            <span class="close" onclick="window.location.href='index.html'">&times;</span>
+            <h1>Contact US !</h1>
+            <form action="contact_submit.php" method="POST">
+                <label for="username" style="font-size:larger">Username</label><br>
+                <input type="text" name="username" required placeholder="Enter your name"><br><br>
 
-            <label for="password" style="font-size:larger">Password</label><br>
+                <label for="email" style="font-size:larger">Email ID</label><br>
+                <input type="email" name="email" required placeholder="Enter your email id"><br><br>
 
-            <input type="password" style=" width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);" placeholder="Enter Password"><br>
-            
-            <a class="li" href="forgatpass.html" style="color: rgb(29, 42, 54);font-size:small;">forgot password ?</a><br><br>
-            <br>
-            <button class="bt" href="Home Page Code.html">Login</button><br><br> 
+                <label for="message" style="font-size:larger">Message</label><br>
+                <textarea name="message" required placeholder="Enter Message"></textarea><br><br>
 
-            Did not have Account ?
-            <a class="li" href="signuppage.html" style="color:rgb(29,42,54);font-size:small;">Sign up</a>-->
+                <button type="submit" class="bt">Submit</button><br><br>
 
-            <label for="uname" style="font-size:larger">Username</label><br>
-            <input type="text" placeholder="Enter your name" style=" width: 60%;padding: 10px;margin-top: 5px;border: none;border-radius: 100px;background: rgba(255, 255, 255, 0.402);"> <br>
-
-            <label for="email" style="font-size:larger">Email ID</label><br>
-            <input type="text" placeholder="Enter your email id" style=" width: 60%;padding: 10px;margin-top: 5px;border: none;border-radius: 100px;background: rgba(255, 255, 255, 0.402);"><br>
-
-            <label for="message" style="font-size:larger">Message</label><br>
-            <textarea placeholder="Enter Message" style=" width: 60%; height: 50px; padding: 10px;margin-top: 5px;border: none;border-radius: 100px;background: rgba(255, 255, 255, 0.402);"></textarea> <br><br>
-
-            <button type="submit" class="bt">Submit</button><br><br>
-
-            Did not have Account ?
-            <a class="li" href="signuppage.html" style="color:rgb(29,42,54);font-size:small;">Sign up</a>
+                Did not have Account?
+                <a class="li" href="signuppage.html" style="color:rgb(29,42,54);font-size:small;">Sign up</a>
             </form>
         </div>
     </section>
 </body>
+
 </html>
