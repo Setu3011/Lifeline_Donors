@@ -51,7 +51,6 @@
             margin: 50px auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
-
         .q{
             width: 50px;
         }
@@ -113,227 +112,63 @@
                     <td>1</td>
                     <td>Ahemdabad Civil Hospital</td>
                     <td>23 July,2025 <br>Time : 1:00 pm</td>
-                    <td><button class="bt">Donate</button></td>
+                    <td><button class="bt" onclick="showDonationInfo('Ahemdabad Civil Hospital', '23 July, 2025 - 1:00 pm')">Donate</button></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Junagadh Civil Hospital</td>
                     <td>25 August,2025 <br>Time : 9:00 am</td>
-                    <td><button class="bt">Donate</button></td>
+                    <td><button class="bt" onclick="showDonationInfo('Junagadh Civil Hospital', '25 August, 2025 - 9:00 am')">Donate</button></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Vapi Civil Hospital</td>
                     <td>19 October,2025 <br>Time : 10:00 am</td>
-                    <td><button class="bt">Donate</button></td>
+                    <td><button class="bt" onclick="showDonationInfo('Vapi Civil Hospital', '19 October, 2025 - 10:00 am')">Donate</button></td>
                 </tr>
             </tbody>
         </table>
     </section>
 
-    <section class="main2">
-        
-        <!--    <tbody id="bloodBankTable">
-                <tr><td colspan="10">No data available</td></tr>
-            </tbody>
-        </table> -->
-        <table>
-            <tbody id="bloodCamp">
-                <tr><td>..</td></tr>
-            </tbody>
-        </table>
+    <section class="main3">
+        <h2>Enter your Details</h2>
 
-        <form action="">
+        <!-- AJAX populated info -->
+        <div id="donationDetailsBox" style="margin-bottom: 20px;"></div>
 
+        <form action="Showinfo.php" method="post">
+            <input type="hidden" name="hospital" id="hospitalInput">
+            <input type="hidden" name="datetime" id="datetimeInput">
+
+            <label>Name</label><br>
+            <input type="text" placeholder="Enter your Name" name="uname" required
+                   style="font-family: Calibri; width: 30%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"><br><br>
+            <label>Age</label><br>
+            <input type="number" placeholder="Enter your Age" name="age" min="18" max="60" required
+                   style="font-family: Calibri; width: 30%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"><br><br>
+            <label>Mobile Number</label><br>
+            <input type="number" placeholder="Enter your Mobile Number" name="mno" required
+                   style="font-family: Calibri; width: 30%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"><br><br>
+            <button class="bt" type="submit">Submit</button>
         </form>
     </section>
 
-
-     <!-- <section class="main3">
-        <!-- <table>
-            <thead>
-                <tr>
-                    <th>Hospital Name</th>
-                    <th>A+</th>
-                    <th>A-</th>
-                    <th>B+</th>
-                    <th>B-</th>
-                    <th>AB+</th>
-                    <th>AB-</th>
-                    <th>O+</th>
-                    <th>O-</th>
-                </tr>
-            </thead>
-            <tbody id="bloodBankTable">
-                <tr>
-                    <td id="selectedHospitalName"></td>
-                    <td><input class="q" type="number" name="quantity" style="font-family: Calibri; width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"></td>
-                    <td><input class="q" type="number" name="quantity" style="font-family: Calibri; width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"></td>
-                    <td><input class="q" type="number" name="quantity" style="font-family: Calibri; width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"></td>
-                    <td><input class="q" type="number" name="quantity" style="font-family: Calibri; width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"></td>
-                    <td><input class="q" type="number" name="quantity" style="font-family: Calibri; width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"></td>
-                    <td><input class="q" type="number" name="quantity" style="font-family: Calibri; width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"></td>
-                    <td><input class="q" type="number" name="quantity" style="font-family: Calibri; width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"></td>
-                    <td><input class="q" type="number" name="quantity" style="font-family: Calibri; width: 60%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"></td>
-                </tr>
-            </tbody>
-        </table> -->
-
-        <!-- <button class="bt" id="orderBtn" name="purchase">Order Now</button> -->
-   <!-- </section> --> 
-    <section>
-        <center class="main3">
-            <h2>Enter your Details</h2>
-        <form action="Showinfo.php">
-            <label for="">Name</label><br>
-            <input type="text" placeholder="Enter your Name" name="uname" style="font-family: Calibri; width: 30%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"><br><br>
-            <label for="">Age</label><br>
-            <input type="number" placeholder="Enter your Age" name="age" min="18" max="60" style="font-family: Calibri; width: 30%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"><br><br>
-            <label for="">Mobile Number</label><br>
-            <input type="number" placeholder="Enter your Mobile Number" name="mno" style="font-family: Calibri; width: 30%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);"><br><br>
-            <button class="bt">Submit</button>
-        </form>
-        </center>
-    </section>
-<!-- 
     <script>
-        const districtData = {
-                "Ahmedabad": ["Ahmedabad City", "Bavla", "Daskroi", "Dhandhuka", "Dholera", "Dholka", "Mandal", "Sanand", "Viramgam"],
-                "Amreli": ["Amreli", "Bagasara", "Dhari", "Jafrabad", "Khambha", "Kukavav", "Lathi", "Rajula", "Savarkundla"],
-                "Anand": ["Anand", "Borsad", "Petlad", "Khambhat", "Sojitra", "Tarapur", "Umreth", "Anklav"],
-                "Aravalli": ["Bayad", "Bhiloda", "Dhansura", "Malpur", "Meghraj", "Modasa"],
-                "Banaskantha": ["Amirgadh", "Bhabhar", "Danta", "Deesa", "Dhanera", "Dantiwada", "Kankrej", "Lakhani", "Palanpur", "Suigam", "Tharad", "Vadgam", "Vav"],
-                "Bharuch": ["Amod", "Ankleshwar", "Bharuch", "Hansot", "Jambusar", "Jhagadia", "Netrang", "Vagra", "Valia"],
-                "Bhavnagar": ["Bhavnagar", "Botad", "Gadhada", "Ghogha", "Jesar", "Mahuva", "Palitana", "Sihor", "Talaja", "Umrala"],
-                "Botad": ["Botad", "Gadhada", "Barvala", "Ranpur"],
-                "Chhota Udaipur": ["Bodeli", "Chhota Udaipur", "Kavant", "Naswadi", "Pavi Jetpur", "Sankheda"],
-                "Dahod": ["Dahod", "Devgad Baria", "Dhanpur", "Fatepura", "Garbada", "Limkheda", "Santrampur", "Jhalod"],
-                "Dang": ["Ahwa", "Subir", "Waghai"],
-                "Devbhoomi Dwarka": ["Bhanvad", "Dwarka", "Khambhalia", "Kalyanpur"],
-                "Gandhinagar": ["Dehgam", "Gandhinagar", "Kalol", "Mansa"],
-                "Gir Somnath": ["Gir Gadhada", "Kodinar", "Sutrapada", "Talala", "Una", "Veraval"],
-                "Jamnagar": ["Dhrol", "Jamjodhpur", "Jamnagar", "Jodiya", "Kalavad", "Lalpur"],
-                "Junagadh": ["Bhesan", "Junagadh", "Keshod", "Malia", "Manavadar", "Mangrol", "Mendarda", "Vanthali", "Visavadar"],
-                "Kheda": ["Kheda", "Kapadvanj", "Kathlal", "Matar", "Mehmedabad", "Mahudha", "Nadiad", "Thasra", "Virpur"],
-                "Kutch": ["Abdasa", "Anjar", "Bhachau", "Bhuj", "Gandhidham", "Lakhpat", "Mandvi", "Mundra", "Nakhatrana", "Rapar"],
-                "Mahisagar": ["Balasinor", "Kadana", "Khanpur", "Lunawada", "Santrampur", "Virpur"],
-                "Mehsana": ["Becharaji", "Jotana", "Kadi", "Kheralu", "Mehsana", "Satlasana", "Unjha", "Vijapur", "Visnagar"],
-                "Morbi": ["Halvad", "Morbi", "Maliya", "Tankara", "Wankaner"],
-                "Narmada": ["Dediapada", "Garudeshwar", "Nandod", "Sagbara", "Tilakwada"],
-                "Navsari": ["Chikhli", "Gandevi", "Jalalpore", "Khergam", "Navsari", "Vansda"],
-                "Panchmahal": ["Ghoghamba", "Godhra", "Halol", "Jambughoda", "Kalol", "Morwa Hadaf", "Shehera"],
-                "Patan": ["Chanasma", "Harij", "Patan", "Radhanpur", "Sami", "Sidhpur"],
-                "Porbandar": ["Kutiyana", "Porbandar", "Ranavav"],
-                "Rajkot": ["Dhoraji", "Gondal", "Jamkandorna", "Jasdan", "Jetpur", "Kotda Sangani", "Lodhika", "Morbi", "Rajkot", "Upleta", "Wankaner"],
-                "Sabarkantha": ["Bayad", "Dhansura", "Himatnagar", "Idar", "Khedbrahma", "Poshina", "Prantij", "Talod", "Vijaynagar"],
-                "Surat": ["Bardoli", "Choryasi", "Kamrej", "Mahuva", "Mandvi", "Mangrol", "Olpad", "Palsana", "Umarpada"],
-                "Surendranagar": ["Chotila", "Dhrangadhra", "Halvad", "Lakhtar", "Limbdi", "Muli", "Patdi", "Sayla", "Thangadh", "Wadhwan"],
-                "Tapi": ["Dolvan", "Nizar", "Songadh", "Uchchhal", "Valod", "Vyara"],
-                "Vadodara": ["Dabhoi", "Karjan", "Padra", "Savli", "Vadodara", "Waghodia"],
-                "Valsad": ["Dharampur", "Kaprada", "Pardi", "Umbergaon", "Valsad", "Vapi"]
-            };
-            
+        function showDonationInfo(hospitalName, dateTime) {
+            // Populate visible details
+            const detailsBox = document.getElementById("donationDetailsBox");
+            detailsBox.innerHTML = `
+                <p><strong>Hospital:</strong> ${hospitalName}</p>
+                <p><strong>Date & Time:</strong> ${dateTime}</p>
+            `;
 
-            document.getElementById("orderBtn").addEventListener("click", function () {
-                if (isLoggedIn) {
-                    alert("Your order is placed successfully!");
-                } else {
-                    window.location.href = "loginpage.html"; // Redirect to login page
-                }
-            });
-            
+            // Populate hidden inputs
+            document.getElementById("hospitalInput").value = hospitalName;
+            document.getElementById("datetimeInput").value = dateTime;
 
-
-        window.onload = function () {
-            const districtSelect = document.getElementById("district");
-            for (const district in districtData) {
-                let opt = document.createElement("option");
-                opt.value = district;
-                opt.textContent = district;
-                districtSelect.appendChild(opt);
-            }
-        };
-
-        function selectHospital(hospitalName) {
-            document.getElementById("selectedHospitalName").textContent = hospitalName;
-            // Optional: scroll to the purchase section
-            document.querySelector(".main3").scrollIntoView({ behavior: "smooth" });
+            // Scroll to form section
+            detailsBox.scrollIntoView({ behavior: "smooth" });
         }
-        
-
-        function updateCities() {
-            const citySelect = document.getElementById("city");
-            const selectedDistrict = document.getElementById("district").value;
-            citySelect.innerHTML = `<option>Select City</option>`;
-
-            if (districtData[selectedDistrict]) {
-                districtData[selectedDistrict].forEach(city => {
-                    let opt = document.createElement("option");
-                    opt.value = city;
-                    opt.textContent = city;
-                    citySelect.appendChild(opt);
-                });
-            }
-        }
-
-        function filterResults() {
-            let district = document.getElementById("district").value;
-            let city = document.getElementById("city").value;
-
-            if (district === "Select District" || city === "Select City") {
-                alert("Please select district and city");
-                return;
-            }
-
-            fetch(`lookblood.php?district=${encodeURIComponent(district)}&city=${encodeURIComponent(city)}`)
-                .then(res => res.json())
-                .then(data => {
-                    const table = document.getElementById("bloodBankTable");
-                    table.innerHTML = "";
-
-                    if (data.length === 0) {
-                        table.innerHTML = `<tr><td colspan="9">No data found</td></tr>`;
-                        return;
-                    }
-
-                    data.forEach(row => {
-                        table.innerHTML += `
-                            <tr>
-                                <td>${row["Hospital Name"]}</td>
-                                <td>${row["A+"]}</td>
-                                <td>${row["A-"]}</td>
-                                <td>${row["B+"]}</td>
-                                <td>${row["B-"]}</td>
-                                <td>${row["AB+"]}</td>
-                                <td>${row["AB-"]}</td>
-                                <td>${row["O+"]}</td>
-                                <td>${row["O-"]}</td>
-                                <td><button class='bt' onclick="selectHospital('${row["Hospital Name"]}')">Purchase Blood</button></td>
-                            </tr>
-                        `;
-                    });
-                })
-                .catch(error => {
-                    console.error("Fetch error:", error);
-                });
-        }
-    </script> -->
-    <script>
-    function showDonationInfo(hospitalName, dateTime) {
-        const main2 = document.querySelector('.main2');
-        main2.innerHTML = `
-            <h2>Donation Details</h2>
-            <p><strong>Hospital:</strong> ${hospitalName}</p>
-            <p><strong>Date & Time:</strong> ${dateTime}</p>
-            <button class="bt" onclick="confirmDonation()">Confirm Donation</button>
-        `;
-        main2.scrollIntoView({ behavior: "smooth" });
-    }
-
-    function confirmDonation() {
-        alert("Thank you for your interest in donating blood!");
-    }
-</script>
-
-    
+    </script>
+</body>
 </html>
