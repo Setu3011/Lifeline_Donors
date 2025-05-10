@@ -1,10 +1,12 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = ""; // use your MySQL password here
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
 $dbname = "blood_donation";
 
-$conn = new mysqli($host, $user, $password, $dbname);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
