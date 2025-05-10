@@ -144,18 +144,19 @@
     </header>
 
     <nav>
-        <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-        <a href="#"><i class="fas fa-users"></i> Manage Donors</a>
-        <a href="#"><i class="fas fa-clipboard-list"></i> View Requests</a>
-        <a href="#"><i class="fas fa-hospital"></i> Manage Camps</a>
-        <a href="#"><i class="fas fa-user-cog"></i> Manage Users</a>
+        <a href="admindashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="admin_donors.html"><i class="fas fa-users"></i> Manage Donors</a>
+        <a href="admin_inventory.html"><i class="fas fa-vial"></i> Blood Inventory</a>
+        <a href="admin_camps.html"><i class="fas fa-hospital"></i> Manage Camps</a>
+        <a href="admin_users.html"><i class="fas fa-user-cog"></i> Manage Users</a>
+        <a href="admin_reports.html"><i class="fas fa-chart-bar"></i> Reports</a>
         <a href="Home Page Code.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </nav>
 
     <section class="dashboard-section">
         <h2>Welcome Admin</h2>
         <div class="dashboard-cards">
-            <div class="card donors-card" onclick="window.location.href='#'">
+            <div class="card donors-card" onclick="window.location.href='admin_donors.html'">
                 <div class="card-icon"><i class="fas fa-hand-holding-heart"></i></div>
                 <h3>Total Donors</h3>
                 <div class="counter" id="donors-counter">0</div>
@@ -165,15 +166,41 @@
                 <h3>Available Blood Centers</h3>
                 <div class="counter" id="bloodcenters-counter">0</div>
             </div>
-            <div class="card camps-card" onclick="window.location.href='#'">
+            <div class="card camps-card" onclick="window.location.href='admin_camps.html'">
                 <div class="card-icon"><i class="fas fa-medkit"></i></div>
                 <h3>Upcoming Camps</h3>
                 <div class="counter" id="camps-counter">0</div>
             </div>
-            <div class="card users-card" onclick="window.location.href='#'">
+            <div class="card users-card" onclick="window.location.href='admin_users.html'">
                 <div class="card-icon"><i class="fas fa-user-friends"></i></div>
                 <h3>Registered Users</h3>
                 <div class="counter" id="users-counter">0</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-section">
+        <h2>Quick Actions</h2>
+        <div class="dashboard-cards">
+            <div class="card" style="background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);" onclick="window.location.href='admin_inventory.html'">
+                <div class="card-icon"><i class="fas fa-vial"></i></div>
+                <h3>Check Blood Inventory</h3>
+                <p>View and manage blood stock levels</p>
+            </div>
+            <div class="card" style="background: linear-gradient(135deg, #00BCD4 0%, #4DD0E1 100%);" onclick="window.location.href='admin_reports.html'">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>View Analytics</h3>
+                <p>Check donation trends and statistics</p>
+            </div>
+            <div class="card" style="background: linear-gradient(135deg, #8BC34A 0%, #AED581 100%);" onclick="window.location.href='admin_camps.html'">
+                <div class="card-icon"><i class="fas fa-calendar-plus"></i></div>
+                <h3>Schedule Camp</h3>
+                <p>Create new blood donation camps</p>
+            </div>
+            <div class="card" style="background: linear-gradient(135deg, #9C27B0 0%, #BA68C8 100%);" onclick="window.location.href='admin_users.html'">
+                <div class="card-icon"><i class="fas fa-user-plus"></i></div>
+                <h3>Add New User</h3>
+                <p>Register new staff members</p>
             </div>
         </div>
     </section>
