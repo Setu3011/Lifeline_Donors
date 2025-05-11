@@ -324,110 +324,6 @@ function filterResults() {
       document.querySelector(".main3").scrollIntoView({ behavior: "smooth" });
     }
 
-    document.getElementById("orderBtn").onclick = function () {
-      const hospital = document.getElementById("selectedHospitalName").textContent;
-      if (!hospital) return alert("Please select a hospital first.");
-
-      const groups = ["A_plus", "A_minus", "B_plus", "B_minus", "AB_plus", "AB_minus", "O_plus", "O_minus"];
-      let valid = false;
-      let summary = "";
-
-      groups.forEach(g => {
-        const val = document.getElementById(g).value;
-        if (val && val > 0) {
-          valid = true;
-          const groupNameMap = {
-            A_plus: "A+",
-            A_minus: "A-",
-            B_plus: "B+",
-            B_minus: "B-",
-            AB_plus: "AB+",
-            AB_minus: "AB-",
-            O_plus: "O+",
-            O_minus: "O-"
-          };
-          summary += `<tr><td>${groupNameMap[g]}</td><td>${val}</td></tr>`;
-                  }
-      });
-
-      if (!valid) return alert("Please enter at least one quantity.");
-
-      document.getElementById("orderSummary").innerHTML = summary;
-      document.getElementById("confirmHospitalName").textContent = hospital;
-      document.getElementById("orderConfirmation").style.display = "block";
-      document.getElementById("orderConfirmation").scrollIntoView({ behavior: "smooth" });
-    };
-
-    function hideConfirmation() {
-      document.getElementById("orderConfirmation").style.display = "none";
-    }
-
-<<<<<<< HEAD
-     document.getElementById("confirmOrderBtn").onclick = function () {
-    const name = document.getElementById("customerName").value.trim();
-      const mobile = document.getElementById("customerMobile").value.trim();
-      if (!name || !mobile || !/^\d{10}$/.test(mobile)) {
-        alert("Please enter valid name and 10-digit mobile number.");
-        return;
-      }
-
-      // Simulate success
-      document.getElementById("confirmationMessage").innerHTML =
-        //`<p class="success-message">Order successfully placed for ${name}.</p>`;
-      //setTimeout(() => hideConfirmation(), 4000);
-      alert("Your blood purchase request has been placed Sucessfully");  
-
-    };
-=======
-    document.getElementById("confirmOrderBtn").addEventListener("click", function() {
-        const name = document.getElementById("customerName").value;
-        const mobile = document.getElementById("customerMobile").value;
-        const hospital = document.getElementById("confirmHospitalName").textContent;
-        
-        if (!name || !mobile) {
-            alert("Please fill in all fields");
-            return;
-        }
-
-        // Get quantities from the order summary table
-        const quantities = {};
-        const rows = document.getElementById("orderSummary").getElementsByTagName("tr");
-        for (let row of rows) {
-            const cells = row.getElementsByTagName("td");
-            if (cells.length === 2) {
-                quantities[cells[0].textContent] = parseInt(cells[1].textContent) || 0;
-            }
-        }
-
-        // Create form data
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('mobile', mobile);
-        formData.append('hospital', hospital);
-        formData.append('quantities', JSON.stringify(quantities));
-
-        // Send data to server
-        fetch('store_order.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                if (confirm("Your blood purchase request has been placed Successfully")) {
-                    window.location.href = "Home Page Code.html";
-                }
-            } else {
-                alert("Error placing order: " + (data.error || "Unknown error"));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("Error placing order. Please try again.");
-        });
-    });
->>>>>>> dad2688935b5d366643b2c66ae401a5639361699
-
     document.getElementById("orderBtn").addEventListener("click", () => {
     const hospital = document.getElementById("selectedHospitalName").textContent;
     if (!hospital) {
@@ -461,6 +357,56 @@ function filterResults() {
 
     document.getElementById("orderConfirmation").scrollIntoView({ behavior: "smooth" });
 });
+
+document.getElementById("confirmOrderBtn").addEventListener("click", function() {
+    const name = document.getElementById("customerName").value;
+    const mobile = document.getElementById("customerMobile").value;
+    const hospital = document.getElementById("confirmHospitalName").textContent;
+    
+    if (!name || !mobile) {
+        alert("Please fill in all fields");
+        return;
+    }
+
+    // Get quantities from the order summary table
+    const quantities = {};
+    const rows = document.getElementById("orderSummary").getElementsByTagName("tr");
+    for (let row of rows) {
+        const cells = row.getElementsByTagName("td");
+        if (cells.length === 2) {
+            quantities[cells[0].textContent] = parseInt(cells[1].textContent) || 0;
+        }
+    }
+    // Create form data
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('mobile', mobile);
+    formData.append('hospital', hospital);
+    formData.append('quantities', JSON.stringify(quantities));
+
+    // Send data to server
+    fetch('store_order.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Your blood purchase request has been placed Successfully");
+            window.location.href = "Home Page Code.html";
+        } else {
+            alert("Error placing order: " + (data.error || "Unknown error"));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Error placing order. Please try again.");
+    });
+});
+
+    function hideConfirmation() {
+      document.getElementById("orderConfirmation").style.display = "none";
+    }
 
 </script>
 

@@ -161,11 +161,7 @@
                 <h3>Total Donors</h3>
                 <div class="counter" id="donors-counter">0</div>
             </div>
-            <div class="card bloodcenters-card" onclick="window.location.href='adminbloodcenter.php'">
-                <div class="card-icon"><i class="fas fa-hospital-symbol"></i></div>
-                <h3>Available Blood Centers</h3>
-                <div class="counter" id="bloodcenters-counter">0</div>
-            </div>
+
             <div class="card camps-card" onclick="window.location.href='admin_camps.html'">
                 <div class="card-icon"><i class="fas fa-medkit"></i></div>
                 <h3>Upcoming Camps</h3>
@@ -175,6 +171,11 @@
                 <div class="card-icon"><i class="fas fa-user-friends"></i></div>
                 <h3>Registered Users</h3>
                 <div class="counter" id="users-counter">0</div>
+            </div>
+            <div class="card" style="background: linear-gradient(135deg, #e53935 0%, #e35d5b 100%);" onclick="window.location.href='admin_blood_requests.php'">
+                <div class="card-icon"><i class="fas fa-tint"></i></div>
+                <h3>Manage Blood Requests</h3>
+                <div class="counter" id="blood-requests-counter">0</div>
             </div>
         </div>
     </section>
@@ -235,6 +236,22 @@
                 element.textContent = Math.floor(current) + (hasPlus ? '+' : '');
             }, 16);
         }
+
+        // Fetch blood requests count
+        function fetchBloodRequestsCount() {
+            fetch('get_blood_requests_count.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.count !== undefined) {
+                        animateCounter('blood-requests-counter', data.count, true);
+                    } else {
+                        console.error('Failed to get blood requests count');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching blood requests count:', error);
+                });
+        }
         
         // Start all animations after a short delay
         setTimeout(() => {
@@ -242,22 +259,25 @@
             animateCounter('bloodcenters-counter', targetValues.bloodcenters, true);
             animateCounter('camps-counter', targetValues.camps);
             animateCounter('users-counter', targetValues.users, true);
+            fetchBloodRequestsCount(); // Fetch and animate blood requests count
         }, startDelay);
         
         // Optional: Add intersection observer to trigger animation when scrolled into view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounter('donors-counter', targetValues.donors, true);
-                    animateCounter('bloodcenters-counter', targetValues.bloodcenters, true);
-                    animateCounter('camps-counter', targetValues.camps);
-                    animateCounter('users-counter', targetValues.users, true);
-                    observer.unobserve(entry.target);
+                    const counterId = entry.target.querySelector('.counter').id;
+                    if (counterId === 'blood-requests-counter') {
+                        fetchBloodRequestsCount();
+                    }
                 }
             });
         }, { threshold: 0.5 });
-        
-        observer.observe(document.querySelector('.dashboard-section'));
+
+        // Observe all counter elements
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
     </script>
 </body>
 
