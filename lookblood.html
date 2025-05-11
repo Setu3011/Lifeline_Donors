@@ -59,6 +59,26 @@ if (!isset($_SESSION['user_id'])) {
             margin: 50px auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+        .order-confirmation {
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control, select, .user-input {
+        font-family: Calibri;
+        width: 30%;
+        padding: 10px;
+        margin: 5px auto;
+        border: none;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.402);
+        }
 
         .q{
             width: 50px;
@@ -172,16 +192,29 @@ if (!isset($_SESSION['user_id'])) {
                 </tr>
             </tbody>
         </table>
-        <label>Name</label><br>
-        <input type="text" id="name" name="name" placeholder="Enter name" style="font-family: Calibri; width: 30%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgba(255, 255, 255, 0.402);">
-        <div class="error" id="usernameError"></div><br>
     
-        <label>Mobile No.</label><br>
-        <input type="text" id="MobileNum" name="MobileNum" style="font-family: Calibri; width: 30%; padding: 10px;margin-top: 5px;border: none;border-radius:50px; background: rgb(255,255,255,0.402);" placeholder="Enter Mobile No.">
-        <div class="error" id="mobileError"></div><br>
-    
-        <button class="bt" id="orderBtn" name="purchase" href="save_order.php">Order Now</button>
+        <button class="bt" id="orderBtn" name="purchase">Order Now</button>
     </section>
+
+    <section class="order-confirmation" id="orderConfirmation">
+    <h2>Confirm Your Order</h2>
+    <div>
+      <h3>Hospital: <span id="confirmHospitalName"></span></h3>
+      <table>
+        <thead>
+          <tr><th>Blood Group</th><th>Quantity</th></tr>
+        </thead>
+        <tbody id="orderSummary"></tbody>
+      </table>
+    </div>
+    <div style="margin: 20px 0;">
+      <input type="text" id="customerName" class="user-input" placeholder="Your Name">
+      <br>
+      <input type="tel" id="customerMobile" class="user-input" placeholder="Mobile Number">
+    </div>
+    <button class="bt" id="confirmOrderBtn">Confirm Order</button>
+    <button class="bt" onclick="hideConfirmation()" >Cancel</button>
+  </section>
 
     <script>
         const districtData = {
@@ -219,51 +252,32 @@ if (!isset($_SESSION['user_id'])) {
                 "Vadodara": ["Dabhoi", "Karjan", "Padra", "Savli", "Vadodara", "Waghodia"],
                 "Valsad": ["Dharampur", "Kaprada", "Pardi", "Umbergaon", "Valsad", "Vapi"]
             };
-            
+    
+window.onload = () => {
+      const district = document.getElementById("district");
+      for (let key in districtData) {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = key;
+        district.appendChild(opt);
+      }
+    };
 
-            document.getElementById("orderBtn").addEventListener("click", function () {
-                if (isLoggedIn) {
-                    alert("Your order is placed successfully!");
-                } else {
-                    window.location.href = "loginpage.html"; // Redirect to login page
-                }
-            });
-            
+    function updateCities() {
+      const city = document.getElementById("city");
+      city.innerHTML = `<option>Select City</option>`;
+      const selected = document.getElementById("district").value;
+      if (districtData[selected]) {
+        districtData[selected].forEach(c => {
+          let opt = document.createElement("option");
+          opt.value = c;
+          opt.textContent = c;
+          city.appendChild(opt);
+        });
+      }
+    }
 
-
-        window.onload = function () {
-            const districtSelect = document.getElementById("district");
-            for (const district in districtData) {
-                let opt = document.createElement("option");
-                opt.value = district;
-                opt.textContent = district;
-                districtSelect.appendChild(opt);
-            }
-        };
-
-        function selectHospital(hospitalName) {
-            document.getElementById("selectedHospitalName").textContent = hospitalName;
-            // Optional: scroll to the purchase section
-            document.querySelector(".main3").scrollIntoView({ behavior: "smooth" });
-        }
-        
-
-        function updateCities() {
-            const citySelect = document.getElementById("city");
-            const selectedDistrict = document.getElementById("district").value;
-            citySelect.innerHTML = `<option>Select City</option>`;
-
-            if (districtData[selectedDistrict]) {
-                districtData[selectedDistrict].forEach(city => {
-                    let opt = document.createElement("option");
-                    opt.value = city;
-                    opt.textContent = city;
-                    citySelect.appendChild(opt);
-                });
-            }
-        }
-
-        function filterResults() {
+function filterResults() {
             let district = document.getElementById("district").value;
             let city = document.getElementById("city").value;
 
@@ -304,17 +318,100 @@ if (!isset($_SESSION['user_id'])) {
                     console.error("Fetch error:", error);
                 });
         }
-    </script>
-<script>
-    const isLoggedIn = <?php echo isset($_SESSION['username']) ? 'true' : 'false'; ?>;
 
-    document.getElementById("orderBtn").addEventListener("click", function () {
-        if (isLoggedIn) {
-            alert("Your order is placed successfully!");
-        } else {
-            window.location.href = "loginpage.html";
+    function selectHospital(name) {
+      document.getElementById("selectedHospitalName").textContent = name;
+      document.querySelector(".main3").scrollIntoView({ behavior: "smooth" });
+    }
+
+    document.getElementById("orderBtn").onclick = function () {
+      const hospital = document.getElementById("selectedHospitalName").textContent;
+      if (!hospital) return alert("Please select a hospital first.");
+
+      const groups = ["A_plus", "A_minus", "B_plus", "B_minus", "AB_plus", "AB_minus", "O_plus", "O_minus"];
+      let valid = false;
+      let summary = "";
+
+      groups.forEach(g => {
+        const val = document.getElementById(g).value;
+        if (val && val > 0) {
+          valid = true;
+          const groupNameMap = {
+            A_plus: "A+",
+            A_minus: "A-",
+            B_plus: "B+",
+            B_minus: "B-",
+            AB_plus: "AB+",
+            AB_minus: "AB-",
+            O_plus: "O+",
+            O_minus: "O-"
+          };
+          summary += `<tr><td>${groupNameMap[g]}</td><td>${val}</td></tr>`;
+                  }
+      });
+
+      if (!valid) return alert("Please enter at least one quantity.");
+
+      document.getElementById("orderSummary").innerHTML = summary;
+      document.getElementById("confirmHospitalName").textContent = hospital;
+      document.getElementById("orderConfirmation").style.display = "block";
+      document.getElementById("orderConfirmation").scrollIntoView({ behavior: "smooth" });
+    };
+
+    function hideConfirmation() {
+      document.getElementById("orderConfirmation").style.display = "none";
+    }
+
+     document.getElementById("confirmOrderBtn").onclick = function () {
+    const name = document.getElementById("customerName").value.trim();
+      const mobile = document.getElementById("customerMobile").value.trim();
+      if (!name || !mobile || !/^\d{10}$/.test(mobile)) {
+        alert("Please enter valid name and 10-digit mobile number.");
+        return;
+      }
+
+      // Simulate success
+      document.getElementById("confirmationMessage").innerHTML =
+        //`<p class="success-message">Order successfully placed for ${name}.</p>`;
+      //setTimeout(() => hideConfirmation(), 4000);
+      alert("Your blood purchase request has been placed Sucessfully");  
+
+    };
+
+    document.getElementById("orderBtn").addEventListener("click", () => {
+    const hospital = document.getElementById("selectedHospitalName").textContent;
+    if (!hospital) {
+        alert("Please select a hospital first.");
+        return;
+    }
+
+    const inputs = document.querySelectorAll(".main3 input.q");
+    const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+    let order = [];
+
+    inputs.forEach((input, i) => {
+        const qty = parseInt(input.value) || 0;
+        if (qty > 0) {
+            order.push({ bloodType: bloodTypes[i], quantity: qty });
         }
     });
+
+    if (order.length === 0) {
+        alert("Please select at least one unit.");
+        return;
+    }
+
+    // Fill confirmation section
+    document.getElementById("confirmHospitalName").textContent = hospital;
+    const summary = document.getElementById("orderSummary");
+    summary.innerHTML = "";
+    order.forEach(item => {
+        summary.innerHTML += `<tr><td>${item.bloodType}</td><td>${item.quantity}</td></tr>`;
+    });
+
+    document.getElementById("orderConfirmation").scrollIntoView({ behavior: "smooth" });
+});
+
 </script>
 
 </body>
