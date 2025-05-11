@@ -362,20 +362,52 @@ function filterResults() {
       document.getElementById("orderConfirmation").style.display = "none";
     }
 
-     document.getElementById("confirmOrderBtn").addEventListener("click", function() {
+    document.getElementById("confirmOrderBtn").addEventListener("click", function() {
         const name = document.getElementById("customerName").value;
         const mobile = document.getElementById("customerMobile").value;
+        const hospital = document.getElementById("confirmHospitalName").textContent;
         
         if (!name || !mobile) {
             alert("Please fill in all fields");
             return;
         }
 
-        // Show success popup
-        if (confirm("Your blood purchase request has been placed Successfully")) {
-            // Redirect to home page
-            window.location.href = "Home Page Code.html";
+        // Get quantities from the order summary table
+        const quantities = {};
+        const rows = document.getElementById("orderSummary").getElementsByTagName("tr");
+        for (let row of rows) {
+            const cells = row.getElementsByTagName("td");
+            if (cells.length === 2) {
+                quantities[cells[0].textContent] = parseInt(cells[1].textContent) || 0;
+            }
         }
+
+        // Create form data
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('mobile', mobile);
+        formData.append('hospital', hospital);
+        formData.append('quantities', JSON.stringify(quantities));
+
+        // Send data to server
+        fetch('store_order.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (confirm("Your blood purchase request has been placed Successfully")) {
+                    window.location.href = "Home Page Code.html";
+                }
+            } else {
+                alert("Error placing order: " + (data.error || "Unknown error"));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Error placing order. Please try again.");
+        });
     });
 
     document.getElementById("orderBtn").addEventListener("click", () => {
